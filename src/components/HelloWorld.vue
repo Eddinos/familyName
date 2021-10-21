@@ -13,7 +13,7 @@ function capitalize (string) {
 }
 
 const hashedName = computed(() => (name1.value && name2.value) && md5(name1.value+name2.value))
-const values = computed(() => hashedName.value && hashedName.value.match(/.{2}/g).map(x => parseInt(Number(`0x${x}`), 10)))
+const values = computed(() => hashedName.value && hashedName.value.match(/.{8}/g).map(x => parseInt(Number(`0x${x}`), 10)%syllables.length))
 const finalName = computed(() => values.value && capitalize(values.value.map(v => syllables[v]).join('').toLowerCase()))
 
 defineProps({
